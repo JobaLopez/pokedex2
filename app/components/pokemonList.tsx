@@ -15,6 +15,7 @@ export default function PokemonList() {
     let previousPage = page !== 1 && page !== 0 ? page - 1 : null;
 
     const [url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${page ? (page - 1) * 20 : 0}`);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [navigationUrl, setNavigationUrl] = useState('');
     const { data, loading, error } = useFetch(url);
     const results = data as unknown as { results: { name: string, url: string }[] } | null;

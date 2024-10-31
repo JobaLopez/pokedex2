@@ -12,6 +12,7 @@ export default function Pokemon() {
 
     const { data, loading, error } = useFetch(url);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const pokemonData = data as unknown as any;
     const imageUrl = pokemonData?.sprites?.other['official-artwork']?.front_default;
     const cry = pokemonData?.cries?.latest;

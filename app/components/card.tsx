@@ -10,6 +10,7 @@ interface CardProps {
 
 export default function Card({ name, url }: CardProps) {
     const { data, loading, error } = useFetch(url);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const pokemonData = data as unknown as any;
     const imageUrl = pokemonData?.sprites?.front_default;
     const id = pokemonData?.id;
