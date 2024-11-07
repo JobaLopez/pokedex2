@@ -1,0 +1,31 @@
+.banner {
+    padding: 20px;
+    border-radius: 8px;
+    background: rgb(224, 224, 224);
+    color: black;
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    max-width: 300px;
+    rotate: 180deg;
+    animation: slide-in 5s ease-in-out forwards;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translate(-100%, 0);
+    }
+
+    20% {
+        transform: translate(-95%, 0);
+    }
+
+    70% {
+        transform: translate(-20%, 0);
+    }
+
+    100% {
+        transform: translate(0, 0);
+        transform: rotate(180deg);
+    }
+}
