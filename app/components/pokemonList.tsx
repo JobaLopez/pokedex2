@@ -1,18 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
-import { useSearchParams } from "next/navigation";
 import useFetch from "../hooks/useFetch";
 import Card from "./card";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
+import useSearchParamsList from "../hooks/useSearchParamsList";
 
 export default function PokemonList() {
-    const searchParams = useSearchParams();
-    const page = Number(searchParams.get('page'));
-
-    let nextPage = page + 1;
-    let previousPage = page !== 1 && page !== 0 ? page - 1 : null;
+    // eslint-disable-next-line prefer-const
+    let { page, nextPage, previousPage } = useSearchParamsList();
 
     const [url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${page ? (page - 1) * 20 : 0}`);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -49,15 +46,21 @@ export default function PokemonList() {
     }
 
     if (loading) {
-        return <span>Loading...</span>
+        return (
+            <Suspense fallback={<div>Loading...</div>}>
+                <span>Loading...</span>
+            </Suspense>)
     }
 
     if (error) {
-        return <span>Error</span>
+        return (
+            <Suspense fallback={<div>Loading...</div>}>
+                <span>Error</span>
+            </Suspense>)
     }
 
     return (
-        <>
+        <Suspense fallback={<div>Loading...</div>}>
             <div style={{ display: 'grid', gridTemplateColumns: 'auto auto auto auto', margin: 'auto', gap: '16px' }}>
                 {pokemons.map((pokemon) => (
                     <Card name={pokemon?.name} url={pokemon?.url} key={pokemon?.name} />
@@ -67,6 +70,6 @@ export default function PokemonList() {
                 <Link href={getNewUrl(previousPage)} onClick={goToPreviousPage} style={{ background: 'blue', padding: '4px 8px' }}>Anterior</Link>
                 <Link href={getNewUrl(nextPage)} onClick={goToNextPage} style={{ background: 'blue', padding: '4px 8px' }}>Siguiente</Link>
             </div>
-        </>
+        </Suspense>
     )
 }
