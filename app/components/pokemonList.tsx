@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-
+import styles from '../styles/button.module.css'
 import useFetch from "../hooks/useFetch";
 import Card from "./card";
 import { useState } from "react";
@@ -61,8 +61,8 @@ export default function PokemonList() {
                 ))}
             </div>
             <div style={{ display: "flex", gap: "16px", maxWidth: '600px', margin: "24px auto 0" }}>
-                <Link href={getNewUrl(previousPage)} onClick={goToPreviousPage} style={{ background: 'blue', padding: '4px 8px' }}>Anterior</Link>
-                <Link href={getNewUrl(nextPage)} onClick={goToNextPage} style={{ background: 'blue', padding: '4px 8px' }}>Siguiente</Link>
+                <Link href={getNewUrl(previousPage)} onClick={goToPreviousPage} className={styles.button}>Anterior</Link>
+                <Link href={getNewUrl(nextPage)} onClick={goToNextPage} className={styles.button}>Siguiente</Link>
             </div>
         </>
     )
