@@ -3,7 +3,7 @@
 
 import useFetch from "../hooks/useFetch";
 import Card from "./card";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import useSearchParamsList from "../hooks/useSearchParamsList";
 
@@ -46,21 +46,15 @@ export default function PokemonList() {
     }
 
     if (loading) {
-        return (
-            <Suspense fallback={<div>Loading...</div>}>
-                <span>Loading...</span>
-            </Suspense>)
+        return <span>Loading...</span>
     }
 
     if (error) {
-        return (
-            <Suspense fallback={<div>Loading...</div>}>
-                <span>Error</span>
-            </Suspense>)
+        return <span>Error</span>
     }
 
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <>
             <div style={{ display: 'grid', gridTemplateColumns: 'auto auto auto auto', margin: 'auto', gap: '16px' }}>
                 {pokemons.map((pokemon) => (
                     <Card name={pokemon?.name} url={pokemon?.url} key={pokemon?.name} />
@@ -70,6 +64,6 @@ export default function PokemonList() {
                 <Link href={getNewUrl(previousPage)} onClick={goToPreviousPage} style={{ background: 'blue', padding: '4px 8px' }}>Anterior</Link>
                 <Link href={getNewUrl(nextPage)} onClick={goToNextPage} style={{ background: 'blue', padding: '4px 8px' }}>Siguiente</Link>
             </div>
-        </Suspense>
+        </>
     )
 }

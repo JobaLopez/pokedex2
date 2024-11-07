@@ -1,8 +1,11 @@
+import { Suspense } from "react";
 import PokemonList from "./components/pokemonList";
 export default function Home() {
     return (
         <header>
-            <PokemonList />
+            <Suspense>
+                <PokemonList />
+            </Suspense>
         </header>
     )
 }
