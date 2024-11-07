@@ -1,18 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
-import { useSearchParams } from "next/navigation";
 import useFetch from "../hooks/useFetch";
 import Card from "./card";
 import { useState } from "react";
 import Link from "next/link";
+import useSearchParamsList from "../hooks/useSearchParamsList";
 
 export default function PokemonList() {
-    const searchParams = useSearchParams();
-    const page = Number(searchParams.get('page'));
-
-    let nextPage = page + 1;
-    let previousPage = page !== 1 && page !== 0 ? page - 1 : null;
+    // eslint-disable-next-line prefer-const
+    let { page, nextPage, previousPage } = useSearchParamsList();
 
     const [url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${page ? (page - 1) * 20 : 0}`);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
