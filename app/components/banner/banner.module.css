@@ -1,14 +1,14 @@
 .banner {
     padding: 20px;
     border-radius: 8px;
-    background: rgb(224, 224, 224);
+    /* background: rgb(224, 224, 224); */
     color: black;
     position: absolute;
     bottom: 30px;
     right: 20px;
     max-width: 300px;
-    rotate: 180deg;
-    animation: slide-in 5s ease-in-out forwards;
+    /* rotate: 180deg; */
+    /* animation: slide-in 5s ease-in-out forwards; */
 }
 
 @keyframes slide-in {
